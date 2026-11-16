@@ -1,0 +1,15 @@
+# Configuración de IntelliJ (es de tu ordenador, no del proyecto)
+.idea/
+*.iml
+
+# Archivos que crea el sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Secretos y variables de entorno (por si algún día los hay)
+.env
+.env.*
+
+# Carpetas de herramientas
+node_modules/

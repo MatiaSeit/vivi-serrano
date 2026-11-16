@@ -1,0 +1,436 @@
+/* ==========================================================
+   Viví Serrano · estilos
+   Colores sacados del logo: papel, sierra, tierra, sol y camino.
+   ========================================================== */
+
+:root {
+  --papel: #f6f0e4;
+  --papel-hondo: #ece3d1;
+  --sierra: #7f9a7d;
+  --sierra-oscura: #4f6b52;
+  --tierra: #b9704f;
+  --sol: #e3b04b;
+  --camino: #3a2a20;
+  --texto-suave: #6b5a4c;
+
+  --titulos: "Young Serif", Georgia, serif;
+  --cuerpo: "Figtree", system-ui, sans-serif;
+
+  --ancho: 96rem;
+  --radio: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--camino);
+  font-family: var(--cuerpo);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--sol);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.contenedor {
+  width: min(100% - 2rem, var(--ancho));
+  margin-inline: auto;
+}
+
+h1, h2, h3 {
+  font-family: var(--titulos);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0 0 0.6em;
+}
+h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+h3 { font-size: 1.4rem; }
+
+p { margin: 0 0 1em; max-width: 62ch; }
+
+/* ---------- Cabecera ---------- */
+
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--papel) 92%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--papel-hondo);
+}
+.cabecera .contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4.25rem;
+}
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  font-family: var(--titulos);
+  font-size: 1.35rem;
+}
+.marca img { width: 44px; height: 44px; border-radius: 50%; }
+
+.menu-boton {
+  display: none;
+  background: none;
+  border: 1px solid var(--camino);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font: inherit;
+  color: var(--camino);
+  cursor: pointer;
+}
+.menu {
+  display: flex;
+  gap: 1.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu a {
+  text-decoration: none;
+  padding: 0.3rem 0;
+  border-bottom: 2px solid transparent;
+}
+.menu a:hover,
+.menu a[aria-current="page"] { border-bottom-color: var(--tierra); }
+
+@media (max-width: 52rem) {
+  .menu-boton { display: block; }
+  .menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--papel);
+    border-bottom: 1px solid var(--papel-hondo);
+    padding: 0.5rem 1rem 1rem;
+  }
+  .menu.abierto { display: flex; }
+  .menu a { display: block; padding: 0.7rem 0; }
+}
+
+/* ---------- Botones ---------- */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: var(--camino);
+  color: var(--papel);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.85rem 1.4rem;
+  border-radius: 999px;
+  transition: background 0.2s;
+}
+.boton:hover { background: var(--sierra-oscura); }
+.boton svg { width: 20px; height: 20px; }
+
+.boton-claro {
+  background: transparent;
+  color: var(--camino);
+  border: 1.5px solid var(--camino);
+}
+.boton-claro:hover { background: var(--papel-hondo); }
+
+/* ---------- Portada (inicio) ---------- */
+
+.portada {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3rem, 8vw, 6rem) 0 0;
+}
+.portada .contenedor { position: relative; z-index: 1; }
+.portada p.bajada {
+  font-size: 1.25rem;
+  color: var(--texto-suave);
+  max-width: 34ch;
+}
+.portada .acciones { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.8rem; }
+
+.paisaje {
+  width: 100%;
+  height: auto;
+  margin-top: clamp(-1rem, -4vw, -3rem);
+}
+.paisaje .camino-trazo {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: dibujar-camino 2.4s 0.4s ease-out forwards;
+}
+@keyframes dibujar-camino { to { stroke-dashoffset: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .paisaje .camino-trazo { animation: none; stroke-dashoffset: 0; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- Secciones ---------- */
+
+.seccion { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+.seccion-sierra { background: var(--sierra-oscura); color: var(--papel); }
+.seccion-sierra p { color: color-mix(in srgb, var(--papel) 85%, transparent); }
+.seccion-honda { background: var(--papel-hondo); }
+
+.introduccion { max-width: 44rem; }
+.introduccion p { font-size: 1.15rem; }
+
+/* Temáticas en la portada: filas alternadas, no tarjetas */
+.tematicas { list-style: none; margin: 2.5rem 0 0; padding: 0; }
+.tematica {
+  display: grid;
+  grid-template-columns: 9rem 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.6rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--camino) 18%, transparent);
+}
+.tematica:last-child { border-bottom: 1px solid color-mix(in srgb, var(--camino) 18%, transparent); }
+.tematica h3 { margin-bottom: 0.25rem; }
+.tematica p { margin: 0; color: var(--texto-suave); }
+.tematica .ilustracion { width: 9rem; height: 6rem; border-radius: var(--radio); }
+
+@media (max-width: 40rem) {
+  .tematica { grid-template-columns: 1fr; gap: 0.8rem; }
+  .tematica .ilustracion { width: 100%; height: 8rem; }
+}
+
+/* Cómo funciona: es un proceso, por eso va numerado */
+.pasos {
+  list-style: none;
+  padding: 0;
+  margin: 2.5rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 2rem;
+  counter-reset: paso;
+}
+.pasos li { counter-increment: paso; }
+.pasos li::before {
+  content: counter(paso);
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: var(--sol);
+  color: var(--camino);
+  font-family: var(--titulos);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.incluye {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.5rem 2.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+}
+.incluye li {
+  padding: 0.9rem 0 0.9rem 1.8rem;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  position: relative;
+}
+.incluye li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.35rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--sol);
+}
+
+/* Quién soy */
+.quien {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+.quien img { border-radius: 50%; }
+@media (max-width: 40rem) {
+  .quien { grid-template-columns: 1fr; }
+  .quien img { width: 10rem; }
+}
+
+/* Llamado final */
+.llamado { text-align: center; }
+.llamado p { margin-inline: auto; }
+.llamado .boton { margin-top: 0.8rem; }
+
+/* ---------- Páginas de temática ---------- */
+
+.cabeza-tematica {
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0;
+}
+.cabeza-tematica .contenedor {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+.cabeza-tematica .ilustracion { width: 100%; aspect-ratio: 4 / 3; border-radius: calc(var(--radio) * 2); }
+.cabeza-tematica p { font-size: 1.2rem; color: var(--texto-suave); }
+.volver { display: inline-block; margin-bottom: 1.2rem; color: var(--texto-suave); }
+@media (max-width: 48rem) {
+  .cabeza-tematica .contenedor { grid-template-columns: 1fr; }
+}
+
+/* Itinerario: los días sí son una secuencia */
+.itinerario { list-style: none; padding: 0; margin: 2.5rem 0 0; }
+.dia {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 1.5rem;
+  padding: 1.6rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--camino) 18%, transparent);
+}
+.dia-numero {
+  font-family: var(--titulos);
+  font-size: 1.5rem;
+  color: var(--tierra);
+}
+.dia h3 { margin-bottom: 0.3rem; }
+.dia p { margin: 0; color: var(--texto-suave); }
+@media (max-width: 34rem) {
+  .dia { grid-template-columns: 1fr; gap: 0.3rem; }
+}
+
+.nota { font-size: 0.95rem; color: var(--texto-suave); margin-top: 1.5rem; }
+
+.otras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+.otras a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1.5px solid var(--camino);
+  border-radius: 999px;
+  text-decoration: none;
+}
+.otras a:hover { background: var(--papel-hondo); }
+
+/* ---------- Pie ---------- */
+
+.pie {
+  background: var(--camino);
+  color: var(--papel);
+  padding: 3rem 0 2rem;
+}
+.pie .contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.pie p { margin: 0.3rem 0; color: color-mix(in srgb, var(--papel) 75%, transparent); }
+.pie .lema { font-family: var(--titulos); font-size: 1.3rem; color: var(--papel); }
+.pie a { color: var(--papel); }
+
+/* Botones flotantes: Instagram arriba, WhatsApp abajo */
+.flotantes {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.flotante {
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--sierra-oscura);
+  color: var(--papel);
+  box-shadow: 0 6px 18px rgba(58, 42, 32, 0.25);
+  transition: background 0.2s;
+}
+.flotante:hover { background: var(--camino); }
+.flotante svg { width: 28px; height: 28px; }
+
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Botones y enlaces sobre el fondo verde */
+.seccion-sierra .boton-claro { color: var(--papel); border-color: var(--papel); }
+.seccion-sierra .boton-claro:hover { background: color-mix(in srgb, var(--papel) 12%, transparent); }
+.seccion-sierra .otras { justify-content: center; }
+.seccion-sierra .otras a { border-color: var(--papel); }
+.seccion-sierra .otras a:hover { background: color-mix(in srgb, var(--papel) 12%, transparent); }
+.otras-titulo { margin-top: 3rem; }
+
+/* ---------- Portada en monitores grandes ----------
+   En pantallas de 1600 px o más, la presentación sube al lado del título.
+   En el resto se ve debajo, en la franja verde. */
+.presentacion-lateral { display: none; }
+
+@media (min-width: 100rem) {
+  .portada-grilla {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .presentacion-lateral {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    background: var(--papel-hondo);
+    border-radius: calc(var(--radio) * 2);
+    padding: 2rem;
+  }
+  .presentacion-lateral img { border-radius: 50%; }
+  .presentacion-lateral h2 { font-size: 1.6rem; }
+  .presentacion-lateral p { color: var(--texto-suave); }
+  .presentacion-lateral p:last-child { margin-bottom: 0; }
+  .presentacion-abajo { display: none; }
+}
+
+/* El logo siempre redondo, sin deformarse */
+.quien img,
+.presentacion-lateral img { height: auto; aspect-ratio: 1; object-fit: cover; }
+.presentacion-lateral img { width: 7rem; }
+
+/* Instagram con el color tierra del logo, para distinguirlo de WhatsApp */
+.flotante[data-instagram] { background: var(--tierra); }
+.flotante[data-instagram]:hover { background: var(--camino); }
