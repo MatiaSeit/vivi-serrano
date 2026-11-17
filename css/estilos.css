@@ -496,3 +496,6 @@ p { margin: 0 0 1em; max-width: 62ch; }
   .galeria-foto img { transition: none; }
 }
 
+
+/* La foto de portada también se puede ampliar */
+.cabeza-tematica .ampliable { cursor: zoom-in; }

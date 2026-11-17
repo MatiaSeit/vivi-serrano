@@ -67,6 +67,9 @@ if (visor && fotos.length) {
   fotos.forEach((foto, i) => {
     foto.parentElement.addEventListener("click", () => { mostrar(i); visor.showModal(); });
   });
+  // La foto de portada abre el visor en la primera foto de la galería
+  const portada = document.querySelector(".cabeza-tematica .ampliable");
+  if (portada) portada.addEventListener("click", () => { mostrar(0); visor.showModal(); });
   visor.querySelector(".visor-cerrar").addEventListener("click", () => visor.close());
   visor.querySelector(".visor-anterior").addEventListener("click", () => mostrar(actual - 1));
   visor.querySelector(".visor-siguiente").addEventListener("click", () => mostrar(actual + 1));
