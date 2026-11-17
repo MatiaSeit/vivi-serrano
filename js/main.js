@@ -8,7 +8,9 @@ const CONFIG = {
   // Ejemplo para Argentina: "5493544123456"
   whatsapp: "",
   // Enlace al perfil de Instagram, por ejemplo "https://www.instagram.com/viviserrano"
-  instagram: ""
+  instagram: "",
+  // Enlace a la página de Facebook, por ejemplo "https://www.facebook.com/viviserrano"
+  facebook: ""
 };
 
 /* ---------- Enlaces de WhatsApp ----------
@@ -21,19 +23,21 @@ document.querySelectorAll("[data-whatsapp]").forEach((enlace) => {
   enlace.rel = "noopener";
 });
 
-/* ---------- Instagram ---------- */
-document.querySelectorAll("[data-instagram]").forEach((enlace) => {
-  if (CONFIG.instagram) {
-    enlace.href = CONFIG.instagram;
-    enlace.target = "_blank";
-    enlace.rel = "noopener";
-  } else if (enlace.classList.contains("flotante")) {
-    // El botón flotante se ve igual, pero no hace nada hasta tener el perfil
-    enlace.addEventListener("click", (e) => e.preventDefault());
-  } else {
-    // El enlace del pie se oculta hasta tener el perfil
-    (enlace.closest("p") || enlace).remove();
-  }
+/* ---------- Redes sociales (Instagram y Facebook) ----------
+   Sin enlace configurado, el botón flotante se ve pero no hace nada
+   y el enlace del pie se oculta. */
+["instagram", "facebook"].forEach((red) => {
+  document.querySelectorAll(`[data-${red}]`).forEach((enlace) => {
+    if (CONFIG[red]) {
+      enlace.href = CONFIG[red];
+      enlace.target = "_blank";
+      enlace.rel = "noopener";
+    } else if (enlace.classList.contains("flotante")) {
+      enlace.addEventListener("click", (e) => e.preventDefault());
+    } else {
+      (enlace.closest("p") || enlace).remove();
+    }
+  });
 });
 
 /* ---------- Menú en el móvil ---------- */

@@ -499,3 +499,7 @@ p { margin: 0 0 1em; max-width: 62ch; }
 
 /* La foto de portada también se puede ampliar */
 .cabeza-tematica .ampliable { cursor: zoom-in; }
+
+/* Facebook con el amarillo del sol del logo */
+.flotante[data-facebook] { background: var(--sol); color: var(--camino); }
+.flotante[data-facebook]:hover { background: var(--camino); color: var(--papel); }
