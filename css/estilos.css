@@ -436,7 +436,7 @@ p { margin: 0 0 1em; max-width: 62ch; }
 .flotante[data-instagram]:hover { background: var(--camino); }
 
 /* Fotos reales */
-.ilustracion.foto { object-fit: cover; }
+.ilustracion.foto { object-fit: cover; object-position: center 30%; }
 .galeria {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
